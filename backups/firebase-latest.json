@@ -4744,7 +4744,8 @@
         "p6",
         "p12"
       ],
-      "status": "finished"
+      "status": "finished",
+      "verzameltijd": ""
     },
     {
       "_import": "2026-11-09|Galàcticos",
@@ -4840,6 +4841,7 @@
         "p12"
       ],
       "status": "finished",
+      "verzameltijd": "",
       "vlagger": "p4",
       "vlaggerNaam": "Rayvano"
     }
@@ -4946,5 +4948,5 @@
   ],
   "season": "2026/27",
   "teamName": "Joga Bonito",
-  "updatedAt": 1794265197723
+  "updatedAt": 1795254388757
 }
