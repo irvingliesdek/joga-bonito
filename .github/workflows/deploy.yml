@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment-2.outputs.page_url }}
     steps:
       - uses: actions/checkout@v5
 
@@ -63,5 +63,42 @@ jobs:
       - uses: actions/upload-pages-artifact@v4
         with:
           path: _site
+      # Publiceren mislukt af en toe doordat GitHub het zojuist geüploade pakket
+      # niet terugvindt ("Fetching artifact metadata failed"). Dat ligt aan hun
+      # kant en is bij een tweede poging meestal over, dus we geven het nog twee
+      # kansen voordat de run rood wordt. Alleen deze stap wordt herhaald: het
+      # uploaden slaagt wel en zou bij herhaling botsen met het bestaande pakket.
       - id: deployment
         uses: actions/deploy-pages@v4
+        continue-on-error: true
+
+      - name: Even wachten en opnieuw publiceren
+        if: steps.deployment.outcome == 'failure'
+        run: |
+          echo "::warning::Publiceren mislukt, over 60 seconden nog een poging."
+          sleep 60
+
+      - id: deployment-2
+        if: steps.deployment.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+
+      - name: Nog één keer wachten en publiceren
+        if: steps.deployment.outcome == 'failure' && steps.deployment-2.outcome == 'failure'
+        run: |
+          echo "::warning::Tweede poging mislukt, over 3 minuten de laatste."
+          sleep 180
+
+      - id: deployment-3
+        if: steps.deployment.outcome == 'failure' && steps.deployment-2.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+
+      - name: Uitkomst
+        run: |
+          if [ "${{ steps.deployment.outcome }}" = "success" ]; then
+            echo "Gepubliceerd bij de eerste poging."
+          elif [ "${{ steps.deployment-2.outcome }}" = "success" ]; then
+            echo "::warning::Pas bij de tweede poging gepubliceerd."
+          else
+            echo "::warning::Pas bij de derde poging gepubliceerd."
+          fi

@@ -9,6 +9,15 @@ wordt opgeslagen, **minor** bij een nieuwe functie of zichtbare gedragsveranderi
 
 ---
 
+## [2.20.2] — 25 november 2026
+
+### Opgelost
+- Af en toe kwam een update niet door doordat GitHub het publiceren liet
+  struikelen. Dat gebeurt nu stilletjes opnieuw, dus verse standen en uitslagen
+  komen betrouwbaarder in de app.
+
+---
+
 ## [2.20.1] — 21 november 2026
 
 ### Opgelost
