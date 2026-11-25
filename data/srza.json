@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-24T05:49:42.035Z",
+  "lastUpdated": "2026-11-25T05:49:15.873Z",
   "team": {
     "played": 9,
     "wins": 7,
@@ -73,6 +73,18 @@
     },
     {
       "pos": 6,
+      "team": "Weddingcars By Dk",
+      "g": 9,
+      "w": 3,
+      "gl": 2,
+      "v": 4,
+      "dv": 22,
+      "dt": 34,
+      "ds": -12,
+      "p": 11
+    },
+    {
+      "pos": 7,
       "team": "De Onderste",
       "g": 7,
       "w": 3,
@@ -82,18 +94,6 @@
       "dt": 29,
       "ds": -4,
       "p": 10
-    },
-    {
-      "pos": 7,
-      "team": "Weddingcars By Dk",
-      "g": 8,
-      "w": 2,
-      "gl": 2,
-      "v": 4,
-      "dv": 18,
-      "dt": 31,
-      "ds": -13,
-      "p": 8
     },
     {
       "pos": 8,
@@ -134,13 +134,13 @@
     {
       "pos": 11,
       "team": "Ter Laak Boomverzorging",
-      "g": 5,
+      "g": 6,
       "w": 1,
       "gl": 1,
-      "v": 3,
-      "dv": 18,
-      "dt": 31,
-      "ds": -13,
+      "v": 4,
+      "dv": 21,
+      "dt": 35,
+      "ds": -14,
       "p": 4
     },
     {
