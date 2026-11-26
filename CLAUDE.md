@@ -22,7 +22,7 @@ Dat is de gewone manier van werken: een screenshot vanaf zijn telefoon, met een 
 
 ## Architectuur
 
-Single-file HTML app (`index.html`, ~4900 regels). Alle CSS + JS inline, geen build step, geen framework. Draait op `python3 -m http.server 8777` via `.claude/launch.json`.
+Single-file HTML app (`index.html`, ~6200 regels). Alle CSS + JS inline, geen build step, geen framework. Draait op `python3 -m http.server 8777` via `.claude/launch.json`.
 
 **Data**: Firebase Realtime Database (`/data`) als bron van waarheid, met localStorage (`jogaBonito_v2`) als offline cache. Alle state zit in het globale `DB` object. Firebase-project `futsal-joga-bonito` staat op Irvings persoonlijke Google-account, niet op de Daylee organization. Drie toegestane accounts, afgedwongen via database rules op e-mailadres.
 
