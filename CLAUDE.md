@@ -2,6 +2,24 @@
 
 Futsal team management app voor zaalvoetbalteam Joga Bonito (Almere). Eigenaar: Irving Liesdek.
 
+## Werkafspraken
+
+- Live: https://irvingliesdek.github.io/joga-bonito/ — de repo is verhuisd van irving-daylee naar irvingliesdek, en het oude adres bestaat niet meer.
+- **Begin altijd met** `git fetch origin main && git checkout -B main origin/main`. Een container start soms op een oude `claude/...`-branch. Controleer ook dat `git remote get-url origin` naar `irvingliesdek` wijst.
+- **Werk op `main` en push direct na elke wijziging, zonder te vragen.** De push start `deploy.yml`, dat eerst de smoke test draait. Controleer in de Actions of de run slaagt en meld dat. Faalt de test, dan staat er niets live: zeg dat dan, en verzwijg het niet.
+- Schrijf in het Nederlands: commitberichten, changelog en antwoorden. Een commitbericht legt uit waarom, inclusief wat er onderweg misging.
+
+## Als Irving een screenshot stuurt
+
+Dat is de gewone manier van werken: een screenshot vanaf zijn telefoon, met een paar woorden of zonder.
+
+1. **Zoek uit welk scherm het is.** De tabbalk heeft Wedstrijd, Team, Stats, Wedstrijden en Analyse. Het versienummer staat in de topbar naast het logo. Is dat ouder dan `APP_VERSION`, dan draait zijn telefoon op een oude cache. Dan is de oplossing "app afsluiten en opnieuw openen", geen codewijziging.
+2. **Kijk naar het sync-bolletje in de topbar.** Is dat niet in orde, dan ligt het probleem waarschijnlijk in de sync en niet in het scherm. Let daarbij op: Firebase weigert een complete `set()` als er ergens `undefined` in zit, en dan komt de data niet op de server.
+3. **Lees wat er niet klopt.** Zonder uitleg: kijk naar tekst die buiten beeld loopt, een stand of tijd die niet kan, een lege kaart. Weet je niet zeker wat hij bedoelt, vraag het dan voordat je bouwt. Controleer een spelregel altijd eerst bij "Futsal-specifiek" hierboven: een tegengoal beëindigt de straftijd hier bijvoorbeeld bewust níet. Dat is geen bug.
+4. **Zoek de oorzaak, niet alleen het symptoom.** Test op 375×812. Voeg bij een bugfix een check aan de smoke test toe en laat zien dat die faalt op de oude versie (zie "Testen en uitrollen").
+5. **Hoog `APP_VERSION` op, werk `CHANGELOG.md` bij, push, en controleer de deploy.**
+6. **Sluit af met:** wat er mis was, wat je hebt veranderd, welke versie live staat, en "sluit de app helemaal af en open hem opnieuw".
+
 ## Architectuur
 
 Single-file HTML app (`index.html`, ~4900 regels). Alle CSS + JS inline, geen build step, geen framework. Draait op `python3 -m http.server 8777` via `.claude/launch.json`.
